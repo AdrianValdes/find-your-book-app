@@ -1,23 +1,19 @@
 {
   "files": {
-    "main.css": "/find-your-book-app/static/css/main.5f361e03.chunk.css",
-    "main.js": "/find-your-book-app/static/js/main.2ea4ec87.chunk.js",
-    "main.js.map": "/find-your-book-app/static/js/main.2ea4ec87.chunk.js.map",
+    "main.js": "/find-your-book-app/static/js/main.a8e0e233.chunk.js",
+    "main.js.map": "/find-your-book-app/static/js/main.a8e0e233.chunk.js.map",
     "runtime-main.js": "/find-your-book-app/static/js/runtime-main.34ca7b33.js",
     "runtime-main.js.map": "/find-your-book-app/static/js/runtime-main.34ca7b33.js.map",
-    "static/js/2.4a15af58.chunk.js": "/find-your-book-app/static/js/2.4a15af58.chunk.js",
-    "static/js/2.4a15af58.chunk.js.map": "/find-your-book-app/static/js/2.4a15af58.chunk.js.map",
+    "static/js/2.12307fb1.chunk.js": "/find-your-book-app/static/js/2.12307fb1.chunk.js",
+    "static/js/2.12307fb1.chunk.js.map": "/find-your-book-app/static/js/2.12307fb1.chunk.js.map",
     "index.html": "/find-your-book-app/index.html",
-    "precache-manifest.0823bb4ee213abfc691ac395f41158d9.js": "/find-your-book-app/precache-manifest.0823bb4ee213abfc691ac395f41158d9.js",
+    "precache-manifest.34b4acec4c39b0504233952c2331e085.js": "/find-your-book-app/precache-manifest.34b4acec4c39b0504233952c2331e085.js",
     "service-worker.js": "/find-your-book-app/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/find-your-book-app/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.4a15af58.chunk.js.LICENSE.txt": "/find-your-book-app/static/js/2.4a15af58.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/find-your-book-app/static/media/logo.5d5d9eef.svg"
+    "static/js/2.12307fb1.chunk.js.LICENSE.txt": "/find-your-book-app/static/js/2.12307fb1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.34ca7b33.js",
-    "static/js/2.4a15af58.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.2ea4ec87.chunk.js"
+    "static/js/2.12307fb1.chunk.js",
+    "static/js/main.a8e0e233.chunk.js"
   ]
 }
