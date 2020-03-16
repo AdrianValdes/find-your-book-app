@@ -10,7 +10,7 @@ class App extends React.Component {
   state = { books: [] };
   onFormSubmit = async term => {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${term}+inauthor:keyes&key=${KEY}`
+      `https://www.googleapis.com/books/v1/volumes?q=${term}&key=${KEY}`
     ).then(resp => resp.json());
 
     console.log(response.items);
