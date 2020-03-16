@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
+/* import 'semantic-ui-css/semantic.min.css'; */
 
-class App extends React.Component {
-  render() {
-    return <div>App</div>;
-  }
-}
 ReactDOM.render(<App />, document.querySelector('#root'));
