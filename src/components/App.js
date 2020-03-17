@@ -8,11 +8,9 @@ const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
   'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key='; */
 
 class App extends React.Component {
-  state = { books: [] };
+  state = { books: [], selectedBook: null };
 
   onFormSubmit = async (title, author) => {
-    console.log(author);
-    console.log(title);
     let responseFinal;
     if (author && title) {
       try {
@@ -53,13 +51,17 @@ class App extends React.Component {
     this.setState({ books: responseFinal.items });
   };
 
+  onBookSelect = book => {
+    console.log('From the App!', book);
+  };
+
   render() {
     return (
       <div className="ui container">
         <div className="ui segment ">
           <SearchBar onFormSubmit={this.onFormSubmit} />
         </div>
-        <BookList books={this.state.books} />
+        <BookList onBookSelect={this.onBookSelect} books={this.state.books} />
       </div>
     );
   }
