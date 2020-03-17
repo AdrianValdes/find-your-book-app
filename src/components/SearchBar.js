@@ -2,34 +2,36 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
 class SearchBar extends React.Component {
-  state = { searchedTitle: '' };
+  state = {
+    searchedTitle: '',
+    searchedAuthor: '',
+    searchedPublisher: '',
+    searchedSubject: '',
+    searchedISBN: ''
+  };
 
   onFormSubmit = event => {
     event.preventDefault();
-
     //Calling the callback form parent component
-    this.props.onFormSubmit(this.state.searchedTitle);
+
+    this.props.onFormSubmit(
+      this.state.searchedTitle,
+      this.state.searchedAuthor,
+      this.state.searchedPublisher,
+      this.state.searchedSubject,
+      this.state.searchedISBN
+    );
   };
 
+  /* onAuthorSubmit = event => {
+    event.preventDefault();
+    if (this.state.searchedAuthor) {
+      this.props.onFormSubmit(this.state.searchedAuthor);
+    }
+  }; */
   render() {
     return (
-      <div className="ui search-bar">
-        {/* <form className="ui  form" onSubmit={this.onFormSubmit}>
-          <label>Book Search</label>
-          <div className="ui  fluid action input">
-            <input
-              placeholder="Search..."
-              type="text"
-              onChange={event => {
-                this.setState({ searchedTitle: event.target.value });
-              }}
-              value={this.state.searchedTitle}
-            />
-            <button className="ui icon button">
-              <i aria-hidden="true" class="search icon"></i>
-            </button>
-          </div>
-        </form> */}
+      <div>
         <Form onSubmit={this.onFormSubmit}>
           <Form.Group unstackable widths={2}>
             <Form.Input
@@ -40,14 +42,42 @@ class SearchBar extends React.Component {
                 this.setState({ searchedTitle: event.target.value });
               }}
             />
-            <Form.Input label="Author" placeholder="Author" />
+            <Form.Input
+              label="Author"
+              placeholder="Author"
+              value={this.state.searchedAuthor}
+              onChange={event => {
+                this.setState({ searchedAuthor: event.target.value });
+              }}
+            />
           </Form.Group>
           <Form.Group widths={2}>
-            <Form.Input label="Publisher" placeholder="Publisher" />
-            <Form.Input label="Subject" placeholder="Subject" />
+            <Form.Input
+              label="Publisher"
+              placeholder="Publisher"
+              value={this.state.searchedPublisher}
+              onChange={event => {
+                this.setState({ searchedPublisher: event.target.value });
+              }}
+            />
+            <Form.Input
+              label="Subject"
+              placeholder="Subject"
+              value={this.state.searchedSubject}
+              onChange={event => {
+                this.setState({ searchedSubject: event.target.value });
+              }}
+            />
           </Form.Group>
           <Form.Group widths={2}>
-            <Form.Input label="ISBN" placeholder="ISBN" />
+            <Form.Input
+              label="ISBN"
+              placeholder="ISBN"
+              value={this.state.searchedISBN}
+              onChange={event => {
+                this.setState({ searchedISBN: event.target.value });
+              }}
+            />
             <Form.Field label="Donwload Format" control="select">
               <option value="EPUB">EPUB</option>
               <option value="PDF">PDF</option>

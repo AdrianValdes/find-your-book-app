@@ -8,15 +8,49 @@ const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
   'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key='; */
 
 class App extends React.Component {
-  state = { books: [], author: [] };
-  onFormSubmit = async term => {
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${term}+&key=${KEY}`
-    ).then(resp => resp.json());
+  state = { books: [] };
 
-    console.log(response.items);
-    console.log(term);
-    this.setState({ books: response.items });
+  onFormSubmit = async (title, author) => {
+    console.log(author);
+    console.log(title);
+    let responseFinal;
+    if (author && title) {
+      try {
+        let response = await fetch(
+          `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=${KEY}`
+        ).then(resp => resp.json());
+
+        responseFinal = response;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (title && !author) {
+      let response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${KEY}`
+      )
+        .then(resp => resp.json())
+        .catch(error => {
+          console.log(error);
+        });
+
+      responseFinal = response;
+    }
+
+    if (author && !title) {
+      let response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${author}&key=${KEY}`
+      )
+        .then(resp => resp.json())
+        .catch(error => {
+          console.log(error);
+        });
+
+      responseFinal = response;
+    }
+
+    this.setState({ books: responseFinal.items });
   };
 
   render() {
