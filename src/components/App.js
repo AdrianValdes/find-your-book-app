@@ -4,51 +4,42 @@ import SearchBar from './SearchBar';
 import BookList from './BookList';
 
 const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
-/* const exampleURL =
-  'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key='; */
+/* const baseURL =
+  'https://www.googleapis.com/books/v1/volumes?q='; */
 
 class App extends React.Component {
   state = { books: [], selectedBook: null };
 
-  onFormSubmit = async (title, author) => {
-    let responseFinal;
-    if (author && title) {
-      try {
-        let response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=${KEY}`
-        ).then(resp => resp.json());
+  onFormSubmit = async (...args) => {
+    console.log(args);
+    /* const array1 = args; */
 
-        responseFinal = response;
-      } catch (error) {
-        console.log(error);
-      }
+    let [title, author, publisher, subject, isbn] = args;
+
+    if (author) {
+      author = `+inauthor:${author}`;
+    }
+    if (publisher) {
+      publisher = `+inpublisher:${publisher}`;
+    }
+    if (subject) {
+      subject = `+subject:${subject}`;
+    }
+    if (isbn) {
+      isbn = `+isbn:${isbn}`;
     }
 
-    if (title && !author) {
-      let response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${KEY}`
-      )
-        .then(resp => resp.json())
-        .catch(error => {
-          console.log(error);
-        });
+    console.log(title);
+    console.log(author);
+    console.log(publisher);
+    console.log(subject);
+    console.log(isbn);
 
-      responseFinal = response;
-    }
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${title}${author}${subject}${publisher}${isbn}&key=${KEY}`
+    ).then(resp => resp.json());
 
-    if (author && !title) {
-      let response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}&key=${KEY}`
-      )
-        .then(resp => resp.json())
-        .catch(error => {
-          console.log(error);
-        });
-
-      responseFinal = response;
-    }
-
-    this.setState({ books: responseFinal.items });
+    this.setState({ books: response.items });
   };
 
   onBookSelect = book => {
