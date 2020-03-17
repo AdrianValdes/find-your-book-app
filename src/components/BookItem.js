@@ -19,12 +19,19 @@ const BookItem = ({ book, onBookSelect }) => {
       }}
       style={{ cursor: 'pointer' }}
     >
-      <Image src={imageF} alt="" verticalAlign="middle" />
+      <a
+        href={book.volumeInfo.previewLink}
+        rel="noopener noreferrer"
+        target="_blank"
+        style={{ color: 'inherit' }}
+      >
+        <Image src={imageF} alt="" verticalAlign="middle" />
 
-      <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
-        {book.volumeInfo.title}
-      </span>
-      <span> by {book.volumeInfo.authors}</span>
+        <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
+          {book.volumeInfo.title}
+        </span>
+        <span> by {book.volumeInfo.authors}</span>
+      </a>
       <span>
         {' '}
         <br />

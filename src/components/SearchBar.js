@@ -7,7 +7,9 @@ class SearchBar extends React.Component {
     searchedAuthor: '',
     searchedPublisher: '',
     searchedSubject: '',
-    searchedISBN: ''
+    searchedISBN: '',
+    typeOfBook: '',
+    downloadFormat: ''
   };
 
   onFormSubmit = event => {
@@ -19,7 +21,9 @@ class SearchBar extends React.Component {
       this.state.searchedAuthor,
       this.state.searchedPublisher,
       this.state.searchedSubject,
-      this.state.searchedISBN
+      this.state.searchedISBN,
+      this.state.typeOfBook,
+      this.state.downloadFormat
     );
   };
 
@@ -78,7 +82,15 @@ class SearchBar extends React.Component {
                 this.setState({ searchedISBN: event.target.value });
               }}
             />
-            <Form.Field label="Donwload Format" control="select">
+            <Form.Field
+              label="Donwload Format"
+              control="select"
+              onChange={event => {
+                this.setState({ downloadFormat: event.target.value });
+              }}
+            >
+              {' '}
+              <option></option>
               <option value="EPUB">EPUB</option>
               <option value="PDF">PDF</option>
             </Form.Field>
@@ -90,18 +102,27 @@ class SearchBar extends React.Component {
               control="input"
               type="radio"
               name="htmlRadios"
+              onChange={() => {
+                this.setState({ typeOfBook: 'All' });
+              }}
             />
             <Form.Field
               label="Books"
               control="input"
               type="radio"
               name="htmlRadios"
+              onChange={() => {
+                this.setState({ typeOfBook: 'Books' });
+              }}
             />
             <Form.Field
               label="Magazines"
               control="input"
               type="radio"
               name="htmlRadios"
+              onChange={() => {
+                this.setState({ typeOfBook: 'Magazines' });
+              }}
             />
           </Form.Group>
           <Button type="submit" className="search">
