@@ -38,7 +38,7 @@ class App extends React.Component {
 
     if (author && !title) {
       let response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${author}&key=${KEY}`
+        `https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}&key=${KEY}`
       )
         .then(resp => resp.json())
         .catch(error => {
