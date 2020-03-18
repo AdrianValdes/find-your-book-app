@@ -1,11 +1,18 @@
 import React from 'react';
 import BookItem from './BookItem';
 
-const BookList = ({ books, onBookSelect }) => {
-  const renderedBooks = books.map(book => {
-    return <BookItem key={book.id} onBookSelect={onBookSelect} book={book} />;
-  });
-  return <div>{renderedBooks}</div>;
+const BookList = ({ books }) => {
+  if (books) {
+    return (
+      <div>
+        {books.map(book => {
+          return <BookItem key={book.id} book={book} />;
+        })}
+      </div>
+    );
+  } else {
+    return <div>Sorry there is no results for your search :(</div>;
+  }
 };
 
 export default BookList;

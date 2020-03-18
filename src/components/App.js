@@ -2,71 +2,67 @@ import React from 'react';
 import SearchBar from './SearchBar';
 
 import BookList from './BookList';
-/* import BookDetail from './BookDetail'; */
+import { Segment, Container } from 'semantic-ui-react';
 
 const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
-/* const baseURL =
-  'https://www.googleapis.com/books/v1/volumes?q='; */
+const baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
+let startIndex = 0;
 
 class App extends React.Component {
-  state = { books: [], selectedBook: null };
+  state = { books: [] };
 
-  onFormSubmit = async (...args) => {
-    /* const array1 = args; */
-
-    let [
-      title,
-      author,
-      publisher,
-      subject,
-      isbn,
-      typeOfBooks,
-      downloadFormat
-    ] = args;
-
-    if (title) {
-      title = `+intitle:${title}`;
+  onFormSubmit = async ({
+    searchedTitle,
+    searchedAuthor,
+    searchedPublisher,
+    searchedSubject,
+    searchedISBN,
+    typeOfBook,
+    downloadFormat
+  }) => {
+    if (searchedTitle) {
+      searchedTitle = `+intitle:${searchedTitle}`;
     }
 
-    if (author) {
-      author = `+inauthor:${author}`;
+    if (searchedAuthor) {
+      searchedAuthor = `+inauthor:${searchedAuthor}`;
     }
-    if (publisher) {
-      publisher = `+inpublisher:${publisher}`;
+    if (searchedPublisher) {
+      searchedPublisher = `+inpublisher:${searchedPublisher}`;
     }
-    if (subject) {
-      subject = `+subject:${subject}`;
+    if (searchedSubject) {
+      searchedSubject = `+subject:${searchedSubject}`;
     }
-    if (isbn) {
-      isbn = `+isbn:${isbn}`;
+    if (searchedISBN) {
+      searchedISBN = `+isbn:${searchedISBN}`;
     }
-    if (typeOfBooks) {
-      typeOfBooks = `+printType=${typeOfBooks}`;
+    if (typeOfBook) {
+      typeOfBook = `+printType=${typeOfBook}`;
     }
     if (downloadFormat) {
       downloadFormat = `+download=${downloadFormat}`;
     }
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${title}${author}${subject}${publisher}${isbn}${typeOfBooks}${downloadFormat}&key=${KEY}`
-    ).then(resp => resp.json());
 
-    this.setState({ books: response.items });
-  };
+    try {
+      const response = await fetch(
+        `${baseURL}${searchedTitle}${searchedAuthor}${searchedSubject}${searchedPublisher}${searchedISBN}${typeOfBook}${downloadFormat}&startIndex=${startIndex}&key=${KEY}`
+      ).then(resp => resp.json());
 
-  onBookSelect = book => {
-    console.log(book);
-    this.setState({ selectedBook: book });
+      this.setState({ books: response.items });
+    } catch (error) {
+      alert(error);
+    }
   };
 
   render() {
     return (
-      <div className="ui container">
-        <div className="ui segment ">
+      <Container>
+        <Segment>
           <SearchBar onFormSubmit={this.onFormSubmit} />
-        </div>
-        {/* <BookDetail book={this.state.selectedBook} /> */}
-        <BookList onBookSelect={this.onBookSelect} books={this.state.books} />
-      </div>
+        </Segment>
+
+        <BookList books={this.state.books} />
+      </Container>
     );
   }
 }

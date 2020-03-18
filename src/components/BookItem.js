@@ -1,43 +1,38 @@
 import React from 'react';
 import { Image, Divider } from 'semantic-ui-react';
 
-const BookItem = ({ book, onBookSelect }) => {
-  let imageF;
+const BookItem = ({ book }) => {
+  let bookImage;
 
   if (book.volumeInfo.imageLinks) {
     let image = book.volumeInfo.imageLinks.thumbnail;
-    imageF = image;
+    bookImage = image;
   } else {
     let image = 'no image';
-    imageF = image;
+    bookImage = image;
   }
 
   return (
-    <div
-      onClick={() => {
-        onBookSelect(book);
-      }}
-      style={{ cursor: 'pointer' }}
-    >
+    <div style={{ cursor: 'pointer' }}>
       <a
         href={book.volumeInfo.previewLink}
         rel="noopener noreferrer"
         target="_blank"
         style={{ color: 'inherit' }}
       >
-        <Image src={imageF} alt="" verticalAlign="middle" />
-
-        <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
-          {book.volumeInfo.title}
-        </span>
-        <span> by {book.volumeInfo.authors}</span>
-      </a>
-      <span>
-        {' '}
+        <div>
+          <Image src={bookImage} alt="" verticalAlign="middle" />{' '}
+          <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
+            {book.volumeInfo.title}
+          </span>
+          <span>
+            {' '}
+            by {book.volumeInfo.authors} <br />
+          </span>
+        </div>
         <br />
-        {book.volumeInfo.description}{' '}
-      </span>
-
+        {book.volumeInfo.description}
+      </a>
       <Divider />
     </div>
   );
