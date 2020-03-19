@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Icon } from 'semantic-ui-react';
 
 class SearchBar extends React.Component {
   state = {
@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
 
   onFormSubmit = event => {
     event.preventDefault();
-    //Calling the callback form parent component
+
     const {
       searchedTitle,
       searchedAuthor,
@@ -25,6 +25,7 @@ class SearchBar extends React.Component {
       downloadFormat
     } = this.state;
 
+    //Calling the callback form parent component
     this.props.onFormSubmit({
       searchedTitle,
       searchedAuthor,
@@ -91,11 +92,11 @@ class SearchBar extends React.Component {
               this.setState({ downloadFormat: event.target.value });
             }}
           >
-            <option value="" disable selected>
+            <option value=" " disable selected>
               All possible
             </option>
-            <option value="EPUB">EPUB</option>
-            <option value="PDF">PDF</option>
+            <option value="epub">epub</option>
+            <option value="pdf">pdf</option>
           </Form.Select>
         </Form.Group>
         <Form.Group grouped>
@@ -107,7 +108,7 @@ class SearchBar extends React.Component {
             type="radio"
             name="htmlRadios"
             onChange={() => {
-              this.setState({ typeOfBook: 'All' });
+              this.setState({ typeOfBook: 'all' });
             }}
           />
           <Form.Field
@@ -116,7 +117,7 @@ class SearchBar extends React.Component {
             type="radio"
             name="htmlRadios"
             onChange={() => {
-              this.setState({ typeOfBook: 'Books' });
+              this.setState({ typeOfBook: 'books' });
             }}
           />
           <Form.Field
@@ -125,12 +126,19 @@ class SearchBar extends React.Component {
             type="radio"
             name="htmlRadios"
             onChange={() => {
-              this.setState({ typeOfBook: 'Magazines' });
+              this.setState({ typeOfBook: 'magazines' });
             }}
           />
         </Form.Group>
-        <Button type="submit" className="search">
+        <Button
+          positive
+          type="submit"
+          className="search"
+          icon
+          labelPosition="right"
+        >
           Search
+          <Icon name="search" />
         </Button>
       </Form>
     );
