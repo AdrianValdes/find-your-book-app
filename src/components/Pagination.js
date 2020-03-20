@@ -2,8 +2,16 @@ import React from 'react';
 import { Pagination } from 'semantic-ui-react';
 
 class PaginationCompact extends React.Component {
+  state = { intervalId: 0 };
+
+  /* componentDidMount(){
+    this.setState({intervalId: })
+  } */
+
   onPageChange = (event, data) => {
     this.props.onPaginationMove(data.activePage * 10);
+
+    window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
   render() {
