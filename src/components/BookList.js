@@ -6,7 +6,7 @@ const BookList = ({ books }) => {
     return (
       <div>
         {books.map(book => {
-          return <BookItem key={book.id} book={book} />;
+          return <BookItem key={book.id} book={book} Accordion />;
         })}
       </div>
     );

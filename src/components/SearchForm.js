@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Form, Icon } from 'semantic-ui-react';
+import './SearchForm.css';
+import { Button, Form } from 'semantic-ui-react';
 
-class SearchBar extends React.Component {
+class SearchForm extends React.Component {
   state = {
     searchedTitle: '',
     searchedAuthor: '',
@@ -39,7 +40,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.onFormSubmit}>
+      <Form onSubmit={this.onFormSubmit} className="externalForm">
         <Form.Group unstackable widths={2}>
           <Form.Input
             label="Book Title"
@@ -129,20 +130,18 @@ class SearchBar extends React.Component {
               this.setState({ typeOfBook: 'magazines' });
             }}
           />
+          <Button
+            color="teal"
+            type="submit"
+            className="search"
+            icon="search"
+            labelPosition="right"
+            content="Search"
+          />
         </Form.Group>
-        <Button
-          positive
-          type="submit"
-          className="search"
-          icon
-          labelPosition="right"
-        >
-          Search
-          <Icon name="search" />
-        </Button>
       </Form>
     );
   }
 }
 
-export default SearchBar;
+export default SearchForm;

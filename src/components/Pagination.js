@@ -15,7 +15,7 @@ class PaginationCompact extends React.Component {
           ellipsisItem={null}
           firstItem={null}
           lastItem={null}
-          siblingRange={3}
+          siblingRange={5}
           totalPages={this.props.totalItems}
           onPageChange={this.onPageChange}
         />

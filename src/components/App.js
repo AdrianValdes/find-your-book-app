@@ -1,7 +1,8 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import SearchForm from './SearchForm';
 import BookList from './BookList';
-import { Segment, Container } from 'semantic-ui-react';
+import './App.css';
+import { Segment, Container, Header } from 'semantic-ui-react';
 import PaginationCompact from './Pagination';
 
 const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
@@ -89,17 +90,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Segment>
-          <SearchBar onFormSubmit={this.onFormSubmit} />
-        </Segment>
+      <div id="externalDIV">
+        <Container className="container">
+          <Header color="teal" as="h3" block>
+            Find your book!
+          </Header>
+          <Segment className="externalSegment">
+            <SearchForm onFormSubmit={this.onFormSubmit} />
+          </Segment>
 
-        <BookList books={this.state.books} />
-        <PaginationCompact
-          onPaginationMove={this.onPaginationMove}
-          totalItems={this.state.totalItems}
-        />
-      </Container>
+          <BookList books={this.state.books} />
+          <PaginationCompact
+            onPaginationMove={this.onPaginationMove}
+            totalItems={this.state.totalItems}
+          />
+        </Container>
+      </div>
     );
   }
 }
