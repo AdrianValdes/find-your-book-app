@@ -131,6 +131,7 @@ class SearchForm extends React.Component {
             }}
           />
           <Button
+            id="searchButton"
             color="teal"
             type="submit"
             className="search"

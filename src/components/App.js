@@ -1,9 +1,10 @@
 import React from 'react';
 import SearchForm from './SearchForm';
 import BookList from './BookList';
+
+import PaginationCompact from './Pagination';
 import './App.css';
 import { Segment, Container, Header } from 'semantic-ui-react';
-import PaginationCompact from './Pagination';
 
 const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
 const baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -65,7 +66,7 @@ class App extends React.Component {
 
     try {
       let response = await fetch(
-        `${baseURL}${searchedTitle}${searchedAuthor}${searchedSubject}${searchedPublisher}${searchedISBN}${typeOfBook}${downloadFormat}&key=${KEY}&startIndex=${0}`
+        `${baseURL}${searchedTitle}${searchedAuthor}${searchedSubject}${searchedPublisher}${searchedISBN}${typeOfBook}${downloadFormat}&key=${KEY}&startIndex=${0}&maxResults=12`
       ).then(resp => resp.json());
 
       this.setState({ books: response.items });
@@ -79,7 +80,7 @@ class App extends React.Component {
   onPaginationMove = async indexToSearch => {
     try {
       let response = await fetch(
-        `${baseURL}${paginatedTitle}${paginatedAuthor}${paginatedSubject}${paginatedPublihser}${paginatedISBN}${paginatedTypeOfBook}${paginatedDownloadFormat}&key=${KEY}&startIndex=${indexToSearch}`
+        `${baseURL}${paginatedTitle}${paginatedAuthor}${paginatedSubject}${paginatedPublihser}${paginatedISBN}${paginatedTypeOfBook}${paginatedDownloadFormat}&key=${KEY}&startIndex=${indexToSearch}&maxResults=12`
       ).then(resp => resp.json());
 
       this.setState({ books: response.items });
@@ -100,6 +101,7 @@ class App extends React.Component {
           </Segment>
 
           <BookList books={this.state.books} />
+
           <PaginationCompact
             onPaginationMove={this.onPaginationMove}
             totalItems={this.state.totalItems}

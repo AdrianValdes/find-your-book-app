@@ -1,7 +1,6 @@
 .externalForm {
   /* background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%); */
   background-color: #1e1f26;
-  color: red !important;
 }
 
 .ui.form .field > label {
@@ -9,4 +8,10 @@
 }
 .ui.form .grouped.fields > label {
   color: #9b9dad !important;
+}
+
+#searchButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

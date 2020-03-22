@@ -1,36 +1,39 @@
 import React from 'react';
+import BookDescription from './BookDescription';
 import { Image, Segment } from 'semantic-ui-react';
+import './BookItem.css';
+import './App.css';
 
-const BookItem = ({ book }) => {
-  let bookImage;
+class BookItem extends React.Component {
+  state = { open: false };
+  handleOpen = () => this.setState({ open: true });
 
-  if (book.volumeInfo.imageLinks) {
-    let image = book.volumeInfo.imageLinks.smallThumbnail;
-    bookImage = image;
-  } else {
-    let image = 'no image';
-    bookImage = image;
-  }
+  handleClose = () => this.setState({ open: false });
 
-  return (
-    <Segment clearing style={{ cursor: 'pointer' }}>
-      <a
-        href={book.volumeInfo.previewLink}
-        rel="noopener noreferrer"
-        target="_blank"
-        style={{ color: 'inherit' }}
-      >
-        <Image src={bookImage} alt="" floated="left" size="tiny" />{' '}
-        <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
-          {book.volumeInfo.title}
-        </span>
-        <span> by {book.volumeInfo.authors}</span> (
-        {book.volumeInfo.publishedDate})
+  render() {
+    let { imageLinks, publishedDate, authors } = this.props.book.volumeInfo;
+
+    return (
+      <Segment raised id="segmentWithImage">
+        <Image
+          src={imageLinks.smallThumbnail}
+          alt=""
+          rounded
+          style={{
+            height: 220,
+            width: 150
+          }}
+        />
         <br />
-        {book.volumeInfo.description}
-      </a>
-    </Segment>
-  );
-};
+        <BookDescription book={this.props.book} />
+        <span>
+          {' '}
+          {authors} <br />{' '}
+        </span>{' '}
+        (published in {publishedDate.substring(0, 4)}) <br />
+      </Segment>
+    );
+  }
+}
 
 export default BookItem;

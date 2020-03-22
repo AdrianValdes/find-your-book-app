@@ -9,7 +9,7 @@ class PaginationCompact extends React.Component {
   } */
 
   onPageChange = (event, data) => {
-    this.props.onPaginationMove(data.activePage * 10);
+    this.props.onPaginationMove(data.activePage * 12);
 
     window.scrollTo({ top: 400, behavior: 'smooth' });
   };
@@ -23,8 +23,8 @@ class PaginationCompact extends React.Component {
           ellipsisItem={null}
           firstItem={null}
           lastItem={null}
-          siblingRange={5}
-          totalPages={this.props.totalItems}
+          siblingRange={2}
+          totalPages={this.props.totalItems / 12}
           onPageChange={this.onPageChange}
         />
       </div>
