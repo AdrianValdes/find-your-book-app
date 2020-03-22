@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/find-your-book-app/static/css/main.3c74ef96.chunk.css",
-    "main.js": "/find-your-book-app/static/js/main.d96884f5.chunk.js",
-    "main.js.map": "/find-your-book-app/static/js/main.d96884f5.chunk.js.map",
+    "main.css": "/find-your-book-app/static/css/main.d7721611.chunk.css",
+    "main.js": "/find-your-book-app/static/js/main.be7da7b4.chunk.js",
+    "main.js.map": "/find-your-book-app/static/js/main.be7da7b4.chunk.js.map",
     "runtime-main.js": "/find-your-book-app/static/js/runtime-main.34ca7b33.js",
     "runtime-main.js.map": "/find-your-book-app/static/js/runtime-main.34ca7b33.js.map",
     "static/css/2.e6dbe5c7.chunk.css": "/find-your-book-app/static/css/2.e6dbe5c7.chunk.css",
-    "static/js/2.c3ca5693.chunk.js": "/find-your-book-app/static/js/2.c3ca5693.chunk.js",
-    "static/js/2.c3ca5693.chunk.js.map": "/find-your-book-app/static/js/2.c3ca5693.chunk.js.map",
+    "static/js/2.7c98eeb6.chunk.js": "/find-your-book-app/static/js/2.7c98eeb6.chunk.js",
+    "static/js/2.7c98eeb6.chunk.js.map": "/find-your-book-app/static/js/2.7c98eeb6.chunk.js.map",
     "index.html": "/find-your-book-app/index.html",
-    "precache-manifest.3c10980ac40f170f258c15e3d3828a03.js": "/find-your-book-app/precache-manifest.3c10980ac40f170f258c15e3d3828a03.js",
+    "precache-manifest.f357efeaa5de055d47f095e3b741d251.js": "/find-your-book-app/precache-manifest.f357efeaa5de055d47f095e3b741d251.js",
     "service-worker.js": "/find-your-book-app/service-worker.js",
     "static/css/2.e6dbe5c7.chunk.css.map": "/find-your-book-app/static/css/2.e6dbe5c7.chunk.css.map",
-    "static/css/main.3c74ef96.chunk.css.map": "/find-your-book-app/static/css/main.3c74ef96.chunk.css.map",
-    "static/js/2.c3ca5693.chunk.js.LICENSE.txt": "/find-your-book-app/static/js/2.c3ca5693.chunk.js.LICENSE.txt",
+    "static/css/main.d7721611.chunk.css.map": "/find-your-book-app/static/css/main.d7721611.chunk.css.map",
+    "static/js/2.7c98eeb6.chunk.js.LICENSE.txt": "/find-your-book-app/static/js/2.7c98eeb6.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/find-your-book-app/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.34ca7b33.js",
     "static/css/2.e6dbe5c7.chunk.css",
-    "static/js/2.c3ca5693.chunk.js",
-    "static/css/main.3c74ef96.chunk.css",
-    "static/js/main.d96884f5.chunk.js"
+    "static/js/2.7c98eeb6.chunk.js",
+    "static/css/main.d7721611.chunk.css",
+    "static/js/main.be7da7b4.chunk.js"
   ]
 }
