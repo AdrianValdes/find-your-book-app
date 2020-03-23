@@ -100,7 +100,7 @@ class App extends React.Component {
           </Segment>
           <BookList books={this.state.books} />
 
-          {this.state.books.length ? (
+          {Boolean(this.state.books) ? (
             <PaginationCompact
               onPaginationMove={this.onPaginationMove}
               totalItems={this.state.totalItems}

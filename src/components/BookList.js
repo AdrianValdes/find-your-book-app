@@ -7,9 +7,32 @@ const BookList = ({ books }) => {
   if (books) {
     return (
       <Segment id="externalContainerResults">
-        {books.map(book => {
-          return <BookItem key={book.id} book={book.volumeInfo} />;
-        })}
+        {books.map(
+          ({
+            volumeInfo: {
+              id,
+              publishedDate,
+              imageLinks,
+              authors,
+              title,
+              description,
+              previewLink
+            }
+          }) => {
+            return (
+              <BookItem
+                key={id}
+                id={id}
+                publishedDate={publishedDate}
+                imageLinks={imageLinks}
+                authors={authors}
+                title={title}
+                description={description}
+                previewLink={previewLink}
+              />
+            );
+          }
+        )}
       </Segment>
     );
   } else {

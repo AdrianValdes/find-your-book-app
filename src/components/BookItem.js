@@ -12,8 +12,15 @@ class BookItem extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    const { imageLinks, publishedDate, authors } = this.props.book;
-    console.log(this.props.book);
+    const {
+      imageLinks,
+      publishedDate,
+      authors,
+      title,
+      description,
+      previewLink
+    } = this.props;
+
     return (
       <Segment raised id="segmentWithImage">
         <Image
@@ -29,7 +36,11 @@ class BookItem extends React.Component {
           }}
         />
         <br />
-        <BookDescription book={this.props.book} />
+        <BookDescription
+          title={title}
+          description={description}
+          previewLink={previewLink}
+        />
         <span>
           {' '}
           {authors} <br />{' '}
@@ -45,17 +56,13 @@ class BookItem extends React.Component {
 }
 
 BookItem.propsTypes = {
-  book: PropTypes.shape({
-    imageLinks: PropTypes.string,
-    authors: PropTypes.string,
-    publishedDate: PropTypes.string
-  })
+  imageLinks: PropTypes.shape({ smallThumbnail: PropTypes.string }),
+  authors: PropTypes.string,
+  publishedDate: PropTypes.string
 };
 
 BookItem.defaultProps = {
-  book: {
-    imageLinks: 'There is no link',
-    authors: 'There is no author for this book'
-  }
+  imageLinks: 'There is no link',
+  authors: 'There is no author for this book'
 };
 export default BookItem;
