@@ -93,11 +93,10 @@ class SearchForm extends React.Component {
               this.setState({ downloadFormat: event.target.value });
             }}
           >
-            <option value=" " disable selected>
+            <option value="" selected>
               All possible
             </option>
             <option value="epub">epub</option>
-            <option value="pdf">pdf</option>
           </Form.Select>
         </Form.Group>
         <Form.Group grouped>

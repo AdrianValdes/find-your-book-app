@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BookDescription from './BookDescription';
 import { Image, Segment } from 'semantic-ui-react';
 import './BookItem.css';
@@ -11,13 +12,16 @@ class BookItem extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    let { imageLinks, publishedDate, authors } = this.props.book.volumeInfo;
-
+    const { imageLinks, publishedDate, authors } = this.props.book;
+    console.log(this.props.book);
     return (
       <Segment raised id="segmentWithImage">
         <Image
-          src={imageLinks.smallThumbnail}
-          alt=""
+          src={
+            imageLinks.smallThumbnail ||
+            'https://react.semantic-ui.com/images/wireframe/image.png'
+          }
+          alt="This is a book cover"
           rounded
           style={{
             height: 220,
@@ -30,10 +34,28 @@ class BookItem extends React.Component {
           {' '}
           {authors} <br />{' '}
         </span>{' '}
-        (published in {publishedDate.substring(0, 4)}) <br />
+        (
+        {publishedDate
+          ? `published in ${publishedDate.substring(0, 4)}`
+          : `The published date for this book is not available`}
+        ) <br />
       </Segment>
     );
   }
 }
 
+BookItem.propsTypes = {
+  book: PropTypes.shape({
+    imageLinks: PropTypes.string,
+    authors: PropTypes.string,
+    publishedDate: PropTypes.string
+  })
+};
+
+BookItem.defaultProps = {
+  book: {
+    imageLinks: 'There is no link',
+    authors: 'There is no author for this book'
+  }
+};
 export default BookItem;

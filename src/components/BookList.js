@@ -8,7 +8,7 @@ const BookList = ({ books }) => {
     return (
       <Segment id="externalContainerResults">
         {books.map(book => {
-          return <BookItem key={book.id} book={book} />;
+          return <BookItem key={book.id} book={book.volumeInfo} />;
         })}
       </Segment>
     );

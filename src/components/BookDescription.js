@@ -15,7 +15,11 @@ class BookDescription extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    let { title, description, previewLink } = this.props.book.volumeInfo;
+    const {
+      title = 'There is no title available',
+      description = 'This book has not a description available',
+      previewLink = 'There is not link for this book'
+    } = this.props.book;
     const { open } = this.state;
     return (
       <div id="transitionalPortal">

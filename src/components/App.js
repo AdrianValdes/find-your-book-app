@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SearchForm from './SearchForm';
 import BookList from './BookList';
 
@@ -35,22 +36,22 @@ class App extends React.Component {
     paginatedTitle = searchedTitle;
 
     if (searchedAuthor) {
-      searchedAuthor = `&inauthor:${searchedAuthor}`;
+      searchedAuthor = `+inauthor:${searchedAuthor}`;
     }
     paginatedAuthor = searchedAuthor;
 
     if (searchedPublisher) {
-      searchedPublisher = `&inpublisher:${searchedPublisher}`;
+      searchedPublisher = `+inpublisher:${searchedPublisher}`;
     }
     paginatedPublihser = searchedPublisher;
 
     if (searchedSubject) {
-      searchedSubject = `&subject:${searchedSubject}`;
+      searchedSubject = `+subject:${searchedSubject}`;
     }
     paginatedSubject = searchedSubject;
 
     if (searchedISBN) {
-      searchedISBN = `&isbn:${searchedISBN}`;
+      searchedISBN = `+isbn:${searchedISBN}`;
     }
     paginatedISBN = searchedISBN;
 
@@ -69,9 +70,7 @@ class App extends React.Component {
         `${baseURL}${searchedTitle}${searchedAuthor}${searchedSubject}${searchedPublisher}${searchedISBN}${typeOfBook}${downloadFormat}&key=${KEY}&startIndex=${0}&maxResults=12`
       ).then(resp => resp.json());
 
-      this.setState({ books: response.items });
-
-      this.setState({ totalItems: response.totalItems });
+      this.setState({ books: response.items, totalItems: response.totalItems });
     } catch (error) {
       alert(error);
     }
@@ -99,13 +98,14 @@ class App extends React.Component {
           <Segment className="externalSegment">
             <SearchForm onFormSubmit={this.onFormSubmit} />
           </Segment>
-
           <BookList books={this.state.books} />
 
-          <PaginationCompact
-            onPaginationMove={this.onPaginationMove}
-            totalItems={this.state.totalItems}
-          />
+          {this.state.books.length ? (
+            <PaginationCompact
+              onPaginationMove={this.onPaginationMove}
+              totalItems={this.state.totalItems}
+            />
+          ) : null}
         </Container>
       </div>
     );
