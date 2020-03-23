@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cebc49e6755b876032dc8165c3b8b17c",
+    "revision": "de7c5c9e9464a54b28eaac391e0e0dd9",
     "url": "/find-your-book-app/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/find-your-book-app/static/css/2.e6dbe5c7.chunk.css"
   },
   {
-    "revision": "ead8e08b6292f1ad2e4a",
+    "revision": "c0f49f47032a44132c5c",
     "url": "/find-your-book-app/static/css/main.d7721611.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/find-your-book-app/static/js/2.7c98eeb6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ead8e08b6292f1ad2e4a",
-    "url": "/find-your-book-app/static/js/main.be7da7b4.chunk.js"
+    "revision": "c0f49f47032a44132c5c",
+    "url": "/find-your-book-app/static/js/main.f85715a6.chunk.js"
   },
   {
     "revision": "2aa98d2dcd14b989eb66",
