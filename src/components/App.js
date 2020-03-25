@@ -90,22 +90,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="externalDIV">
-        <Container className="container">
-          <Header color="teal" as="h3" block>
-            Find your book!
-          </Header>
-          <Segment className="externalSegment">
-            <SearchForm onFormSubmit={this.onFormSubmit} />
-          </Segment>
-          <BookList books={this.state.books} />
+      <Container className="container">
+        <Header color="teal" as="h3" block>
+          Find your book!
+        </Header>
+        <Segment className="externalSegment">
+          <SearchForm onFormSubmit={this.onFormSubmit} />
+        </Segment>
+        <BookList books={this.state.books} />
 
-          <PaginationCompact
-            onPaginationMove={this.onPaginationMove}
-            totalItems={this.state.totalItems}
-          />
-        </Container>
-      </div>
+        <PaginationCompact
+          onPaginationMove={this.onPaginationMove}
+          totalItems={this.state.totalItems}
+        />
+      </Container>
     );
   }
 }
