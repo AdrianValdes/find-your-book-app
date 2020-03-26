@@ -19,8 +19,32 @@ let paginatedTypeOfBook;
 let paginatedDownloadFormat;
 
 class App extends React.Component {
-  state = { books: [], totalItems: 0 };
+  state = {
+    books: [],
+    totalItems: 0,
+    bookInfo: {
+      'Book Title': '',
+      searchedAuthor: '',
+      searchedPublisher: '',
+      searchedSubject: '',
+      searchedISBN: '',
+      typeOfBook: '',
+      downloadFormat: ''
+    }
+  };
 
+  onFormChange = event => {
+    let bookInfo = { ...this.state.bookInfo };
+    bookInfo[event.placeholder] = event.value;
+
+    this.setState({ bookInfo });
+  };
+  componentDidUpdate(pP, pS) {
+    console.log(this.state.bookInfo['Book Title']);
+    if (pS.bookInfo['Book Title'] !== this.state.bookInfo['Book Title']) {
+      this.setState({ bookinfo: this.state.bookInfo['Book Title'] });
+    }
+  }
   onFormSubmit = async ({
     searchedTitle,
     searchedAuthor,
@@ -95,7 +119,11 @@ class App extends React.Component {
           Find your book!
         </Header>
         <Segment className="externalSegment">
-          <SearchForm onFormSubmit={this.onFormSubmit} />
+          <SearchForm
+            onFormSubmit={this.onFormSubmit}
+            bookInfo={this.state.bookInfo['Book Title']}
+            onFormChange={this.onFormChange}
+          />
         </Segment>
         <BookList books={this.state.books} />
 

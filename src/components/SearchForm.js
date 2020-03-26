@@ -13,6 +13,12 @@ class SearchForm extends React.Component {
     downloadFormat: ''
   };
 
+  onTitleChange = event => {
+    this.props.onFormChange(event.target);
+
+    console.log(this.props.bookInfo);
+  };
+
   onFormSubmit = event => {
     event.preventDefault();
 
@@ -45,10 +51,8 @@ class SearchForm extends React.Component {
           <Form.Input
             label="Book Title"
             placeholder="Book Title"
-            value={this.state.searchedTitle}
-            onChange={event => {
-              this.setState({ searchedTitle: event.target.value });
-            }}
+            value={this.props.bookInfo['Book Title']}
+            onChange={this.onTitleChange}
           />
           <Form.Input
             label="Author"
