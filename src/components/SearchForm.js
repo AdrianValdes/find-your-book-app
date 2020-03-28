@@ -51,7 +51,7 @@ class SearchForm extends React.Component {
             id="bookTitle"
             label="Book Title"
             placeholder="Book Title"
-            value={this.props.bookInfo['bookTitle']}
+            value={this.props.bookInfo.bookTitle}
             onChange={this.onTitleChange}
           />
           <Form.Input
