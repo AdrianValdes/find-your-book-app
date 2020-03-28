@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Segment,
-  TransitionablePortal,
-  Button,
-  Header
-} from 'semantic-ui-react';
+import { Segment, TransitionablePortal } from 'semantic-ui-react';
 import './BookItem.css';
 import './App.css';
 
@@ -31,18 +26,13 @@ class BookDescription extends React.Component {
           onClose={this.handleClose}
           openOnTriggerClick
           trigger={
-            <Button
-              style={{
-                backgroundColor: 'teal ',
-                color: 'whitesmoke',
-                padding: '5px',
-                fontStyle: 'Italic'
-              }}
-              size="mini"
-              compact
+            <button
               content={open ? 'close description' : title}
               negative={open}
-            />
+            >
+              {' '}
+              {title}{' '}
+            </button>
           }
         >
           <Segment
@@ -53,7 +43,7 @@ class BookDescription extends React.Component {
               zIndex: 1000
             }}
           >
-            <Header>{title}</Header>
+            <h1>{title}</h1>
             {description} <br />
             <a
               href={previewLink}

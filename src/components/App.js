@@ -5,7 +5,6 @@ import BookList from './BookList';
 
 import PaginationCompact from './Pagination';
 import './App.css';
-import { Segment, Container, Header } from 'semantic-ui-react';
 
 const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
 const baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -90,20 +89,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container className="container">
-        <Header color="teal" as="h3" block>
-          Find your book!
-        </Header>
-        <Segment className="externalSegment">
+      <div className="container">
+        <header color="teal" as="h3" block>
+          <h1>Find your book!</h1>
+        </header>
+        <div className="externalSegment">
           <SearchForm onFormSubmit={this.onFormSubmit} />
-        </Segment>
+        </div>
         <BookList books={this.state.books} />
 
         <PaginationCompact
           onPaginationMove={this.onPaginationMove}
           totalItems={this.state.totalItems}
         />
-      </Container>
+      </div>
     );
   }
 }

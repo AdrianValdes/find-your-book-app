@@ -1,12 +1,11 @@
 import React from 'react';
 import BookItem from './BookItem';
 import './App.css';
-import { Segment } from 'semantic-ui-react';
 
 const BookList = ({ books }) => {
   if (books) {
     return (
-      <Segment id="externalContainerResults">
+      <div id="externalContainerResults">
         {books.map(
           ({
             volumeInfo: {
@@ -33,7 +32,7 @@ const BookList = ({ books }) => {
             );
           }
         )}
-      </Segment>
+      </div>
     );
   } else {
     return <div>Sorry there is no results for your search :(</div>;
