@@ -23,7 +23,7 @@ class App extends React.Component {
     books: [],
     totalItems: 0,
     bookInfo: {
-      'Book Title': '',
+      bookTitle: '',
       searchedAuthor: '',
       searchedPublisher: '',
       searchedSubject: '',
@@ -33,18 +33,12 @@ class App extends React.Component {
     }
   };
 
-  onFormChange = event => {
+  onFormChange = target => {
     let bookInfo = { ...this.state.bookInfo };
-    bookInfo[event.placeholder] = event.value;
-
+    bookInfo[target.id] = target.value;
     this.setState({ bookInfo });
   };
-  componentDidUpdate(pP, pS) {
-    console.log(this.state.bookInfo['Book Title']);
-    if (pS.bookInfo['Book Title'] !== this.state.bookInfo['Book Title']) {
-      this.setState({ bookinfo: this.state.bookInfo['Book Title'] });
-    }
-  }
+
   onFormSubmit = async ({
     searchedTitle,
     searchedAuthor,
@@ -121,7 +115,7 @@ class App extends React.Component {
         <Segment className="externalSegment">
           <SearchForm
             onFormSubmit={this.onFormSubmit}
-            bookInfo={this.state.bookInfo['Book Title']}
+            bookInfo={this.state.bookInfo}
             onFormChange={this.onFormChange}
           />
         </Segment>
