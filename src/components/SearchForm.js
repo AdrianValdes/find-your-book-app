@@ -15,15 +15,12 @@ class SearchForm extends React.Component {
 
   onTitleChange = event => {
     this.props.onFormChange(event.target);
-
-    console.log(this.props.bookInfo);
   };
 
   onFormSubmit = event => {
     event.preventDefault();
 
     const {
-      searchedTitle,
       searchedAuthor,
       searchedPublisher,
       searchedSubject,
@@ -32,15 +29,17 @@ class SearchForm extends React.Component {
       downloadFormat
     } = this.state;
 
+    const newSearchedTitle = this.props.bookInfo.bookTitle;
+
     //Calling the callback form parent component
     this.props.onFormSubmit({
-      searchedTitle,
+      searchedTitle: newSearchedTitle,
       searchedAuthor,
       searchedPublisher,
       searchedSubject,
       searchedISBN,
       typeOfBook,
-      downloadFormat
+      downloadFormat,
     });
   };
 
@@ -49,9 +48,10 @@ class SearchForm extends React.Component {
       <Form onSubmit={this.onFormSubmit} className="externalForm">
         <Form.Group unstackable widths={2}>
           <Form.Input
+            id="bookTitle"
             label="Book Title"
             placeholder="Book Title"
-            value={this.props.bookInfo['Book Title']}
+            value={this.props.bookInfo.bookTitle}
             onChange={this.onTitleChange}
           />
           <Form.Input
@@ -91,17 +91,17 @@ class SearchForm extends React.Component {
             }}
           />
           <Form.Select
+            fluid
             label="Download Format"
-            control="select"
+            placeholder="All possible"
             onChange={event => {
               this.setState({ downloadFormat: event.target.value });
             }}
-          >
-            <option value="" selected>
-              All possible
-            </option>
-            <option value="epub">epub</option>
-          </Form.Select>
+            options={[
+              { key: 'a', text: 'All possible', value: '' },
+              { key: 'e', text: 'Epub', value: 'epub' },
+            ]}
+          />
         </Form.Group>
         <Form.Group grouped>
           <label>Print Type</label>
