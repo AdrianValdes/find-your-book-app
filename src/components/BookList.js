@@ -16,13 +16,12 @@ const BookList = ({ books }) => {
               authors,
               title,
               description,
-              previewLink
-            }
+              previewLink,
+            },
           }) => {
             return (
               <BookItem
                 key={id}
-                id={id}
                 publishedDate={publishedDate}
                 imageLinks={imageLinks}
                 authors={authors}

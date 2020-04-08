@@ -10,97 +10,73 @@ import { Segment, Container, Header } from 'semantic-ui-react';
 const KEY = 'AIzaSyCpLykouuOz1NzjMuy5fXuxkntk2eHVlCU';
 const baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
-let paginatedTitle;
-let paginatedAuthor;
-let paginatedPublihser;
-let paginatedSubject;
-let paginatedISBN;
-let paginatedTypeOfBook;
-let paginatedDownloadFormat;
-
 class App extends React.Component {
   state = {
     books: [],
     totalItems: 0,
     bookInfo: {
       bookTitle: '',
-      searchedAuthor: '',
-      searchedPublisher: '',
-      searchedSubject: '',
-      searchedISBN: '',
+      author: '',
+      publisher: '',
+      subject: '',
+      isbn: '',
       typeOfBook: '',
-      downloadFormat: ''
-    }
+      downloadFormat: '',
+    },
   };
 
-  onFormChange = target => {
+  onFormChange = (target) => {
     let bookInfo = { ...this.state.bookInfo };
     bookInfo[target.id] = target.value;
     this.setState({ bookInfo });
   };
 
-  onFormSubmit = async ({
-    searchedTitle,
-    searchedAuthor,
-    searchedPublisher,
-    searchedSubject,
-    searchedISBN,
-    typeOfBook,
-    downloadFormat
-  }) => {
+  onFormSubmit = async (indexToSearch) => {
+    let searchedTitle = this.state.bookInfo.bookTitle;
+    let searchedAuthor = this.state.bookInfo.author;
+    let searchedPublisher = this.state.bookInfo.publisher;
+    let searchedSubject = this.state.bookInfo.subject;
+    let searchedISBN = this.state.bookInfo.isbn;
+    let searchedTypeOfBook = this.state.bookInfo.typeOfBook;
+
     if (searchedTitle) {
       searchedTitle = `intitle:${searchedTitle}`;
     }
-    paginatedTitle = searchedTitle;
 
     if (searchedAuthor) {
       searchedAuthor = `+inauthor:${searchedAuthor}`;
     }
-    paginatedAuthor = searchedAuthor;
 
     if (searchedPublisher) {
       searchedPublisher = `+inpublisher:${searchedPublisher}`;
     }
-    paginatedPublihser = searchedPublisher;
 
     if (searchedSubject) {
       searchedSubject = `+subject:${searchedSubject}`;
     }
-    paginatedSubject = searchedSubject;
 
     if (searchedISBN) {
       searchedISBN = `+isbn:${searchedISBN}`;
     }
-    paginatedISBN = searchedISBN;
 
-    if (typeOfBook) {
-      typeOfBook = `&printType=${typeOfBook}`;
+    if (searchedTypeOfBook) {
+      searchedTypeOfBook = `&printType=${searchedTypeOfBook}`;
     }
-    paginatedTypeOfBook = typeOfBook;
 
-    if (downloadFormat) {
+    /* if (downloadFormat) {
       downloadFormat = `&download=${downloadFormat}`;
     }
-    paginatedDownloadFormat = downloadFormat;
+    paginatedDownloadFormat = downloadFormat; */
+    if (typeof indexToSearch !== 'number') {
+      indexToSearch = 0;
+    }
 
     try {
       let response = await fetch(
-        `${baseURL}${searchedTitle}${searchedAuthor}${searchedSubject}${searchedPublisher}${searchedISBN}${typeOfBook}${downloadFormat}&key=${KEY}&startIndex=${0}&maxResults=12`
-      ).then(resp => resp.json());
+        `${baseURL}${searchedTitle}${searchedAuthor}${searchedSubject}${searchedPublisher}${searchedISBN}${searchedTypeOfBook}&key=${KEY}&startIndex=${indexToSearch}&maxResults=12`
+      ).then((resp) => resp.json());
 
       this.setState({ books: response.items, totalItems: response.totalItems });
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  onPaginationMove = async indexToSearch => {
-    try {
-      let response = await fetch(
-        `${baseURL}${paginatedTitle}${paginatedAuthor}${paginatedSubject}${paginatedPublihser}${paginatedISBN}${paginatedTypeOfBook}${paginatedDownloadFormat}&key=${KEY}&startIndex=${indexToSearch}&maxResults=12`
-      ).then(resp => resp.json());
-
-      this.setState({ books: response.items });
     } catch (error) {
       alert(error);
     }
@@ -121,10 +97,14 @@ class App extends React.Component {
         </Segment>
         <BookList books={this.state.books} />
 
-        <PaginationCompact
-          onPaginationMove={this.onPaginationMove}
-          totalItems={this.state.totalItems}
-        />
+        {this.state.books.length === 0 ? (
+          ''
+        ) : (
+          <PaginationCompact
+            onFormSubmit={this.onFormSubmit}
+            totalItems={this.state.totalItems}
+          />
+        )}
       </Container>
     );
   }

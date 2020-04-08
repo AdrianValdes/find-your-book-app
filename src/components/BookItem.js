@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BookDescription from './BookDescription';
 import { Image, Segment } from 'semantic-ui-react';
-import './BookItem.css';
+
 import './App.css';
 
 class BookItem extends React.Component {
@@ -18,7 +18,7 @@ class BookItem extends React.Component {
       authors,
       title,
       description,
-      previewLink
+      previewLink,
     } = this.props;
 
     return (
@@ -32,7 +32,7 @@ class BookItem extends React.Component {
           rounded
           style={{
             height: 220,
-            width: 150
+            width: 150,
           }}
         />
         <br />
@@ -58,11 +58,11 @@ class BookItem extends React.Component {
 BookItem.propsTypes = {
   imageLinks: PropTypes.shape({ smallThumbnail: PropTypes.string }),
   authors: PropTypes.string,
-  publishedDate: PropTypes.string
+  publishedDate: PropTypes.string,
 };
 
 BookItem.defaultProps = {
   imageLinks: 'There is no link',
-  authors: 'There is no author for this book'
+  authors: 'There is no author for this book',
 };
 export default BookItem;

@@ -4,41 +4,19 @@ import { Button, Form } from 'semantic-ui-react';
 
 class SearchForm extends React.Component {
   state = {
-    searchedTitle: '',
-    searchedAuthor: '',
-    searchedPublisher: '',
-    searchedSubject: '',
-    searchedISBN: '',
-    typeOfBook: '',
-    downloadFormat: ''
+    downloadFormat: '',
   };
 
-  onTitleChange = event => {
+  onAnyInputChange = (event) => {
     this.props.onFormChange(event.target);
   };
 
-  onFormSubmit = event => {
+  onFormSubmit = (event) => {
     event.preventDefault();
 
-    const {
-      searchedAuthor,
-      searchedPublisher,
-      searchedSubject,
-      searchedISBN,
-      typeOfBook,
-      downloadFormat
-    } = this.state;
+    const { downloadFormat } = this.state;
 
-    const newSearchedTitle = this.props.bookInfo.bookTitle;
-
-    //Calling the callback form parent component
     this.props.onFormSubmit({
-      searchedTitle: newSearchedTitle,
-      searchedAuthor,
-      searchedPublisher,
-      searchedSubject,
-      searchedISBN,
-      typeOfBook,
       downloadFormat,
     });
   };
@@ -52,49 +30,46 @@ class SearchForm extends React.Component {
             label="Book Title"
             placeholder="Book Title"
             value={this.props.bookInfo.bookTitle}
-            onChange={this.onTitleChange}
+            onChange={this.onAnyInputChange}
           />
           <Form.Input
+            id="author"
             label="Author"
             placeholder="Author"
-            value={this.state.searchedAuthor}
-            onChange={event => {
-              this.setState({ searchedAuthor: event.target.value });
-            }}
+            value={this.props.bookInfo.author}
+            onChange={this.onAnyInputChange}
           />
         </Form.Group>
         <Form.Group widths={2}>
           <Form.Input
+            id="publisher"
             label="Publisher"
             placeholder="Publisher"
-            value={this.state.searchedPublisher}
-            onChange={event => {
-              this.setState({ searchedPublisher: event.target.value });
-            }}
+            value={this.props.bookInfo.publisher}
+            onChange={this.onAnyInputChange}
           />
           <Form.Input
+            id="subject"
             label="Subject"
             placeholder="Subject"
-            value={this.state.searchedSubject}
-            onChange={event => {
-              this.setState({ searchedSubject: event.target.value });
-            }}
+            value={this.props.bookInfo.subject}
+            onChange={this.onAnyInputChange}
           />
         </Form.Group>
         <Form.Group widths={2}>
           <Form.Input
+            id="isbn"
             label="ISBN"
             placeholder="ISBN"
-            value={this.state.searchedISBN}
-            onChange={event => {
-              this.setState({ searchedISBN: event.target.value });
-            }}
+            value={this.props.bookInfo.isbn}
+            onChange={this.onAnyInputChange}
           />
           <Form.Select
             fluid
+            id="downloadFormat"
             label="Download Format"
             placeholder="All possible"
-            onChange={event => {
+            onChange={(event) => {
               this.setState({ downloadFormat: event.target.value });
             }}
             options={[
@@ -111,27 +86,27 @@ class SearchForm extends React.Component {
             control="input"
             type="radio"
             name="htmlRadios"
-            onChange={() => {
-              this.setState({ typeOfBook: 'all' });
-            }}
+            id="typeOfBook"
+            value=""
+            onChange={this.onAnyInputChange}
           />
           <Form.Field
             label="Books"
             control="input"
             type="radio"
             name="htmlRadios"
-            onChange={() => {
-              this.setState({ typeOfBook: 'books' });
-            }}
+            id="typeOfBook"
+            value="books"
+            onChange={this.onAnyInputChange}
           />
           <Form.Field
             label="Magazines"
             control="input"
             type="radio"
             name="htmlRadios"
-            onChange={() => {
-              this.setState({ typeOfBook: 'magazines' });
-            }}
+            id="typeOfBook"
+            value="magazines"
+            onChange={this.onAnyInputChange}
           />
           <Button
             id="searchButton"

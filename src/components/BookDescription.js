@@ -4,9 +4,9 @@ import {
   Segment,
   TransitionablePortal,
   Button,
-  Header
+  Header,
 } from 'semantic-ui-react';
-import './BookItem.css';
+
 import './App.css';
 
 class BookDescription extends React.Component {
@@ -19,7 +19,7 @@ class BookDescription extends React.Component {
     const {
       title = 'There is no title available',
       description = 'This book has not a description available',
-      previewLink = 'There is not link for this book'
+      previewLink = 'There is not link for this book',
     } = this.props;
     const { open } = this.state;
 
@@ -36,7 +36,7 @@ class BookDescription extends React.Component {
                 backgroundColor: 'teal ',
                 color: 'whitesmoke',
                 padding: '5px',
-                fontStyle: 'Italic'
+                fontStyle: 'Italic',
               }}
               size="mini"
               compact
@@ -50,7 +50,7 @@ class BookDescription extends React.Component {
               left: '40%',
               position: 'fixed',
               top: '50%',
-              zIndex: 1000
+              zIndex: 1000,
             }}
           >
             <Header>{title}</Header>
@@ -72,6 +72,6 @@ class BookDescription extends React.Component {
 BookDescription.propsTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  previewLink: PropTypes.string
+  previewLink: PropTypes.string,
 };
 export default BookDescription;
